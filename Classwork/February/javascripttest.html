@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Form Validation</title>
+<script>
+// Form validation
+function validate() {
+	var form = document.forms['myForm'];
+	if (form.Name.value.trim() === "") {
+		alert("Please provide your name!");
+		form.Name.focus();
+		return false;
+	}
+	if (form.Country.value === "-1") {
+		alert("Please provide your country!");
+		form.Country.focus();
+		return false;
+	}
+	if (form.EMail.value.trim() === "") {
+		alert("Please provide your Email!");
+		form.EMail.focus();
+		return false;
+	}
+	if (!validateEmail(form.EMail.value)) {
+		form.EMail.focus();
+		return false;
+	}
+	var zip = form.Zip.value;
+	if (zip === "" || isNaN(zip) || zip.length !== 4) {
+		alert("Please provide a zip in the format ####.");
+		form.Zip.focus();
+		return false;
+	}
+	return true;
+}
+
+function validateEmail(emailID) {
+	var atpos = emailID.indexOf("@");
+	var dotpos = emailID.lastIndexOf(".");
+	if (atpos < 1 || (dotpos - atpos < 2)) {
+		alert("Please enter correct email ID");
+		return false;
+	}
+	return true;
+}
+
+</script>
+<style>
+	.align-right { text-align: right; }
+	table.form-table { border-collapse: collapse; }
+	table.form-table td { border: 1px solid #000; padding: 6px; }
+</style>
+</head>
+<body>
+<form action="/cgi-bin/test.cgi" name="myForm" onsubmit="return(validate());">
+	<table class="form-table" cellspacing="2" cellpadding="2">
+		<tr>
+			<td class="align-right">Name</td>
+			<td><input type="text" name="Name" /></td>
+		</tr>
+		<tr>
+			<td class="align-right">EMail</td>
+			<td><input type="text" name="EMail" /></td>
+		</tr>
+		<tr>
+			<td class="align-right">Zip Code</td>
+			<td><input type="text" name="Zip" /></td>
+		</tr>
+		<tr>
+			<td class="align-right">Country</td>
+			<td>
+				<select name="Country">
+					<option value="-1" selected>[choose yours]</option>
+					<option value="1">AUSTRALIA</option>
+					<option value="2">USA</option>
+					<option value="3">INDIA</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="align-right"></td>
+			<td><input type="submit" value="Submit" /></td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>
