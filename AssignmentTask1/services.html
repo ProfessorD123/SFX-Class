@@ -2,197 +2,203 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AmpWave Events, Powering Events</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Products - AmpWave Events</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            background-color: #121212;
-            color: #F5F5F5;
-            font-family: 'Roboto', sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background: #111; color: #fff; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
 
+        /* Navigation */
         nav {
-            background-color: #1e1e1e;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
+            padding: 20px 40px;
+            background-color: #111;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
         }
+        nav .logo { color: #FFD700; font-weight: 700; font-size: 1.8rem; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav ul li a { color: #fff; transition: 0.3s; }
+        nav ul li a:hover { color: #FFD700; }
 
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 1.4em;
-            color: #FFD000;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #F5F5F5;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: #FFD000;
-        }
-
-        .promo-banner {
-            background-color: #FFD000;
-            color: #121212;
-            text-align: center;
-            padding: 10px;
-            font-weight: bold;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(to bottom, #121212, #1e1e1e);
-        }
-
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            color: #cccccc;
-        }
-
-        .cta-button {
-            background-color: #FFD000;
-            color: #121212;
-            padding: 12px 25px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-
-        .cta-button:hover {
-            background-color: #e6bd00;
-        }
-
-        .services-preview {
-            padding: 60px 40px;
-            text-align: center;
-        }
-
-        .services-preview h2 {
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 40px;
-            border-left: 5px solid #FFD000;
-            display: inline-block;
-            padding-left: 10px;
-        }
-
-        .service-cards {
+        /* Hero Section */
+        header {
+            position: relative;
+            background: url('https://static.wixstatic.com/media/0a1938_cc9fe3a2a6e1467994496d6d40e888b2~mv2.jpg/v1/fill/w_925,h_584,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/0a1938_cc9fe3a2a6e1467994496d6d40e888b2~mv2.jpg') center/cover no-repeat;
+            height: 40vh;
             display: flex;
             justify-content: center;
-            gap: 30px;
+            align-items: center;
+            text-align: center;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+        }
+        header .hero-content { position: relative; z-index: 1; }
+        header h1 { font-size: 3rem; color: #ffffff; text-shadow: 2px 2px 10px #000; }
+
+        /* Section Styles */
+        section { padding: 60px 20px; max-width: 1000px; margin: auto; }
+        section h2 { font-size: 2.5rem; color: #FFD700; margin-bottom: 30px; text-align: center; }
+        section p { color: #ccc; font-size: 1.05rem; margin-bottom: 20px; line-height: 1.8; }
+
+        /* Products Grid */
+        .product-category {
+            margin-top: 40px;
+        }
+        .product-category h3 { color: #FFD700; margin-bottom: 20px; text-align: left; font-size: 2rem; }
+        .product-list {
+            display: flex;
             flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
         }
-
-        .card {
-            background-color: #1e1e1e;
+        .product-card {
+            background: #222;
+            border-radius: 10px;
             padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-        }
-
-        .card img {
-            width: 100%;
-            border-radius: 5px;
-        }
-
-        .card h3 {
-            margin-top: 15px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .card p {
-            font-size: 0.95em;
-            color: #cccccc;
-        }
-
-        .cta-section {
+            width: 400px;
             text-align: center;
-            padding: 50px 20px;
-            background-color: #1a1a1a;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+        .product-card h4 { color: #FFD700; margin-bottom: 10px; font-size: 1.2rem; }
+        .product-card p { color: #ccc; font-size: 0.95rem; margin-bottom: 5px; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 25px rgba(0,0,0,0.6); }
 
+        /* Note Section */
+        .note { text-align: center; margin-top: 50px; color: #aaa; font-style: italic; }
+
+        /* Footer */
         footer {
+            background: #111;
             text-align: center;
             padding: 20px;
-            background-color: #111;
-            font-size: 0.9em;
-            color: #888;
+            border-top: 1px solid #333;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul { gap: 15px; }
+            header h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
-
 <body>
 
-    <nav>
-        <div class="logo">AmpWave Events</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+<!-- Navigation -->
+<nav>
+    <div class="logo">AmpWave Events</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
 
-    <header class="hero">
-        <h1>Powering Events.<br>Amplifying Experiences.</h1>
-        <p>Professional Audio & Event Production Services Across NSW & ACT</p>
-        <a href="contact.html" class="cta-button">Get a Quote</a>
-    </header>
+<!-- Hero Section -->
+<header>
+    <div class="hero-content">
+        <h1>Our Products</h1>
+    </div>
+</header>
 
-    <section class="services-preview">
-        <h2>What We Do</h2>
+<!-- Products Section -->
+<section>
+    <p>All of our products are packaged according to the event’s needs. Pricing is flexible depending on what is used on the day. If equipment has been agreed upon in advance, we ensure no unexpected charges.</p>
 
-        <div class="service-cards">
-            <div class="card">
-                <img src="images/pa-system.jpg" alt="PA System">
-                <h3>Live Sound</h3>
-                <p>High-quality PA systems and expert mixing for concerts, festivals, and school productions. We work our hardest to bring your event to life. with what we have, and with what you imagine.</p>
+    <!-- Speakers -->
+    <div class="product-category">
+        <h3>Speakers</h3>
+        <div class="product-list">
+            <div class="product-card">
+                <h4>ElectroVoice (EV) ZLX 12P G2</h4>
+                <p>Quantity: 2</p>
+                <p>These are used as main speakers for their high quality for Front of House functionality</p>
             </div>
-
-            <div class="card">
-                <img src="images/mixer.jpg" alt="Digital Mixing Console">
-                <h3>Event Production</h3>
-                <p>Complete technical solutions including staging, monitoring, and wireless systems. With top of the range equipment we strive to perform so you as an event organiser or promoter doesn't need to worry any longer.</p>
-            </div>
-
-            <div class="card">
-                <img src="images/corporate-event.jpg" alt="Corporate AV Setup">
-                <h3>Corporate AV</h3>
-                <p>Clear, reliable audio-visual systems for conferences and presentations. We ensure your corporate events are visually impressive and technically flawless, while keeping your budget in check!</p>
+            <div class="product-card">
+                <h4>Behringer DR112DSP</h4>
+                <p>Quantity: 4</p>
+                <p>These can be used as artist monitor speakers or delay fill speakers*</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="cta-section">
-        <h2>Ready to Power Your Event?</h2>
-        <a href="contact.html" class="cta-button">Contact Us Today</a>
-    </section>
+    <!-- Mixers -->
+    <div class="product-category">
+        <h3>Mixers</h3>
+        <div class="product-list">
+            <div class="product-card">
+                <h4>Behringer X32 Rack</h4>
+                <p>Quantity: 1</p>
+                <p>3U rack mount mixer</p>
+            </div>
+        </div>
+    </div>
 
-    <footer>
-        © 2026 AmpWaveEvents | Professional Event Audio Services
-    </footer>
+    <!-- Microphones -->
+    <div class="product-category">
+        <h3>Microphones</h3>
+        <div class="product-list">
+            <div class="product-card">
+                <h4>Shure SLX-D Wireless + Beta-58 Handheld</h4>
+                <p>Quantity: 2</p>
+            </div>
+            <div class="product-card">
+                <h4>Shure SM58</h4>
+                <p>Quantity: 5</p>
+            </div>
+            <div class="product-card">
+                <h4>Shure SM57</h4>
+                <p>Quantity: 2</p>
+            </div>
+            <div class="product-card">
+                <h4>Sennheiser e906</h4>
+                <p>Quantity: 2</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Remote IO / Stageboxes -->
+    <div class="product-category">
+        <h3>Remote IO / Stageboxes (Coming Soon)</h3>
+        <div class="product-list">
+            <div class="product-card">
+                <h4>Behringer SD8</h4>
+                <p>Quantity: 2</p>
+                <p>8 inputs and 8 outputs</p>
+            </div>
+            <div class="product-card">
+                <h4>Midas DL32</h4>
+                <p>Quantity: 1</p>
+                <p>32 inputs and 16 outputs</p>
+            </div>
+            <div class="product-card">
+                <h4>Monitoring iPad</h4>
+                <p>Available on request</p>
+                <p>iPad (A16)</p>
+            </div>
+        </div>
+    </div>
+
+    <p class="note">Note: Each event package is tailored to your needs. Pricing is calculated based on actual equipment used.</p>
+    <p class="note">*delay fill speakers are speakers that are offset from the mains speakers on the stage, they assist in audio quality for audience members who are not as close to the stage</p>
+</section>
+
+<!-- Footer -->
+<footer>
+    © 2025 AmpWave Events | Professional Event Audio Services
+</footer>
 
 </body>
 </html>
