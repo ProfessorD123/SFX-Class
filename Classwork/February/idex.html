@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mini Order Form</title>
+<style>
+    body { font-family: Arial, sans-serif; max-width: 450px; margin: 40px auto; }
+    label { display: block; margin-top: 15px; }
+    .total { margin-top: 20px; font-size: 1.3em; font-weight: bold; }
+    .error { color: red; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<h2>Order Form</h2>
+
+<form id="orderForm">
+
+    <!-- Product Selection -->
+    <label>
+        Product:
+        <select id="product">
+            <option value="">-- Select a product --</option>
+            <option value="20">Notebook ($20)</option>
+            <option value="35">Headphones ($35)</option>
+            <option value="50">Keyboard ($50)</option>
+        </select>
+    </label>
+
+    <!-- Quantity -->
+    <label>
+        Quantity:
+        <input type="number" id="quantity" min="1" value="1">
+    </label>
+
+    <!-- Optional Extras -->
+    <label>
+        <input type="checkbox" class="extra" value="5"> Gift Wrap (+$5)
+    </label>
+    <label>
+        <input type="checkbox" class="extra" value="10"> Express Shipping (+$10)
+    </label>
+
+    <!-- Total -->
+    <div class="total">Total: $<span id="totalPrice">0</span></div>
+
+    <button type="submit">Submit Order</button>
+    <div class="error" id="errorMsg"></div>
+
+</form>
+
+<script>
+    const product = document.getElementById("product");
+    const quantity = document.getElementById("quantity");
+    const extras = document.querySelectorAll(".extra");
+    const totalPrice = document.getElementById("totalPrice");
+    const form = document.getElementById("orderForm");
+    const errorMsg = document.getElementById("errorMsg");
+
+    function calculateTotal() {
+        let basePrice = Number(product.value);
+        let qty = Number(quantity.value);
+
+        if (!basePrice || qty < 1) {
+            totalPrice.textContent = "0";
+            return;
+        }
+
+        let extrasTotal = 0;
+        extras.forEach(extra => {
+            if (extra.checked) extrasTotal += Number(extra.value);
+        });
+
+        let total = (basePrice + extrasTotal) * qty;
+        totalPrice.textContent = total.toFixed(2);
+    }
+
+    // Update total when anything changes
+    product.addEventListener("change", calculateTotal);
+    quantity.addEventListener("input", calculateTotal);
+    extras.forEach(extra => extra.addEventListener("change", calculateTotal));
+
+    // Form validation
+    form.addEventListener("submit", function(e) {
+        errorMsg.textContent = "";
+
+        if (!product.value) {
+            e.preventDefault();
+            errorMsg.textContent = "Please select a product.";
+            return;
+        }
+
+        if (quantity.value < 1) {
+            e.preventDefault();
+            errorMsg.textContent = "Quantity must be at least 1.";
+            return;
+        }
+
+        alert("Order submitted successfully!");
+    });
+</script>
+
+</body>
+</html>
